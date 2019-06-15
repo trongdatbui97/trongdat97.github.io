@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Project 2</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style type="text/css">
+table{
+    width:100%;
+}
+table,th,td{
+    border:2px solid gray;
+    border-collapse: collapse;
+    font-size: 150%;
+}
+p{
+    color:black;
+    font-family: monospace;
+    font-size:40px;
+    text-align: center;
+}
+th,td{
+    padding:7px 15px;
+    text-align: center;
+}
+th{
+    background-color: #008040;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #F0F0F0;
+}
+tr:hover{
+    background-color: #ddd;
+}
+</style>
+</head>
+
+<body>
+    <p>Dữ liệu nhiệt độ và độ ẩm</p>
+    <table border="1">
+        <thead >
+        <tr>
+            <th>STT</th>
+            <th>Thời gian</th>
+            <th>Nhiệt độ</th>
+            <th>Độ ẩm</th>
+        </tr>
+        </thead>
+        <tbody class="mypanel">
+        </tbody>
+    </table>
+   
+    <script>
+    $.getJSON('https://api.thingspeak.com/channels/802411/feeds.json', function(data) {
+        var txt = ``;
+        for(var i = 0; i <data.feeds.length; i++){
+            var date = new Date(data.feeds[i].created_at);
+            txt += `<tr>
+            <td>${i+1}</td>
+            <td>${date.toLocaleTimeString()} - ${date.toLocaleDateString()}</td>
+            <td><font color="red">${data.feeds[i].field1}&deg;C</font></td>
+            <td><font color="blue">${data.feeds[i].field2}%</font></td>
+        </tr>`
+        }      
+        
+        $(".mypanel").html(txt);
+    });
+    </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Project 2</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style type="text/css">
+table{
+    width:100%;
+}
+table,th,td{
+    border:2px solid gray;
+    border-collapse: collapse;
+    font-size: 150%;
+}
+p{
+    color:red;
+    font-family: monospace;
+    font-size:40px;
+    text-align: center;
+}
+th,td{
+    padding:7px 15px;
+    text-align: center;
+}
+th{
+    background-color: #008040;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #F0F0F0;
+}
+tr:hover{
+    background-color: #ddd;
+}
+</style>
+</head>
+
+<body>
+    <p>Temperature and Humidity</p>
+    <table border="1">
+        <thead >
+        <tr>
+            <th>No</th>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+        </tr>
+        </thead>
+        <tbody class="mypanel">
+        </tbody>
+    </table>
+   
+    <script>
+    $.getJSON('https://api.thingspeak.com/channels/789928/feeds.json', function(data) {
+        var txt = ``;
+        for(var i = 0; i <data.feeds.length; i++){
+            txt += `<tr>
+            <td>${i+1}</td>
+            <td></td>
+            <td>${data.feeds[i].field1}&deg;C</td>
+            <td>${data.feeds[i].field2}%</td>
+        </tr>`
+        }      
+        
+        $(".mypanel").html(txt);
+    });
+    </script>
+</body>
+>>>>>>> b9870d195049e4083331b68384aff12a4bb3fa59
+</html>
